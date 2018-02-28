@@ -8,6 +8,9 @@ module.exports = {
         return Buffer.concat([salt, Buffer.from(this.stretch(originalData, salt))])
     },
     scrapeSalt: function (base64EncodedHashString) {
+        if (base64EncodedHashString.length < saltLengthByte) {
+            throw Error('given hashed string shorter than expected salt length')
+        } 
         return new Buffer(base64EncodedHashString, 'base64').slice(0, saltLengthByte)
     },
     genSalt: function () {

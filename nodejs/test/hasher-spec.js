@@ -8,6 +8,10 @@ describe('able to scrape salt from hash', function() {
     assert.equal(hasher.scrapeSalt(hasher.hashWithSalt("anything", salt)).toString(), salt.toString())
   })
 
+  it('throws error when hashed string is shorter than expected salt length', function() {
+    assert.throws(() => hasher.scrapeSalt("too short!"))
+  })
+
   it('able to compare plain with hashed', function() {
     for (let i = 0; i < 100; ++i) {
         const input = randomStr(Math.floor(Math.random() * 16) + 8)
