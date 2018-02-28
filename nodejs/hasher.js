@@ -1,6 +1,7 @@
 const crypto = require('crypto')
 const algorithm = 'sha512'
 const saltLengthByte = 32
+const stretchRepetition = 100
 
 module.exports = {
     hashWithSalt: function (originalData, salt) {
@@ -14,7 +15,7 @@ module.exports = {
     },
     stretch: function (originalData, salt) {
         let result
-        for (let i = 0; i < 100; ++i) {
+        for (let i = 0; i < stretchRepetition; ++i) {
             let hasher = crypto.createHash(algorithm)
             hasher.update(salt + result + originalData)
             result = hasher.digest()

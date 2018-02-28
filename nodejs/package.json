@@ -2,7 +2,7 @@
   "name": "hashrocke",
   "version": "1.0.0",
   "description": "hashing library",
-  "main": "index.js",
+  "main": "example.js",
   "repository": "https://github.com/ymdarake/hashrocke",
   "author": "ymdarake",
   "license": "MIT",
