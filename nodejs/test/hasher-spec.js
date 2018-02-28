@@ -20,6 +20,13 @@ describe('able to scrape salt from hash', function() {
         const hashString = hashBuffer.toString('base64')
         assert.equal(hashString, hasher.hashWithSalt(input, hasher.scrapeSalt(hashString)).toString('base64'))
     }
+    for (let i = 0; i < 100; ++i) {
+      const input = randomStr(Math.floor(Math.random() * 16) + 8)
+      const salt = hasher.genSalt()
+      const hashBuffer = hasher.hashWithSalt(input, salt)
+      const hashString = hashBuffer.toString('base64')
+      assert.notEqual(hashString.substring(0, hashString.length - 1), hasher.hashWithSalt(input, hasher.scrapeSalt(hashString)).toString('base64'))
+  }
   })
 
 })
