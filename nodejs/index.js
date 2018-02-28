@@ -25,7 +25,7 @@ function randomStr(length) {
 }
 
 function hashWithSalt(originalData, salt) {
-    return Buffer.concat([salt, Buffer.from(stretch(originalData, salt), 'binary')])
+    return Buffer.concat([salt, Buffer.from(stretch(originalData, salt))])
 }
 
 function isEqual(plainInput, base64EncodedHashString) {
