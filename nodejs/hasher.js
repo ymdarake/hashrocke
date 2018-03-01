@@ -17,10 +17,11 @@ module.exports = {
         return crypto.randomBytes(saltLengthByte)
     },
     stretch: function (originalData, salt) {
-        let result
+        let result = new Buffer('')
+        const originalBuffer = new Buffer(originalData)
         for (let i = 0; i < stretchRepetition; ++i) {
             let hasher = crypto.createHash(algorithm)
-            hasher.update(salt + result + originalData) //TODO: check if originalData should be Buffer, and to use Buffer.concat
+            hasher.update(Buffer.concat([salt, result, originalBuffer]))
             result = hasher.digest()
         }
         return result
