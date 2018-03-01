@@ -5,7 +5,7 @@ const stretchRepetition = 100
 
 module.exports = {
     hashWithSalt: function (originalData, salt) {
-        return Buffer.concat([salt, Buffer.from(this.stretch(originalData, salt))])
+        return Buffer.concat([salt, this.stretch(originalData, salt)])
     },
     scrapeSalt: function (base64EncodedHashString) {
         if (base64EncodedHashString.length < saltLengthByte) {
