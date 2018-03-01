@@ -20,7 +20,7 @@ module.exports = {
         let result
         for (let i = 0; i < stretchRepetition; ++i) {
             let hasher = crypto.createHash(algorithm)
-            hasher.update(salt + result + originalData)
+            hasher.update(salt + result + originalData) //TODO: check if originalData should be Buffer, and to use Buffer.concat
             result = hasher.digest()
         }
         return result
