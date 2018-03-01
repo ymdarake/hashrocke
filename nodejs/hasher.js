@@ -17,8 +17,8 @@ module.exports = {
         return crypto.randomBytes(saltLengthByte)
     },
     stretch: function (originalData, salt) {
-        let result = new Buffer('')
-        const originalBuffer = new Buffer(originalData)
+        let result = Buffer.from('')
+        const originalBuffer = Buffer.from(originalData)
         for (let i = 0; i < stretchRepetition; ++i) {
             let hasher = crypto.createHash(algorithm)
             hasher.update(Buffer.concat([salt, result, originalBuffer]))
